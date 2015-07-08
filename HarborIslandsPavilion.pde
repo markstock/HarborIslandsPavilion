@@ -104,12 +104,16 @@ void getWeather() {
   XML xml = loadXML(url);
 
   // Get the wind data element
-  XML windData = xml.getChild("channel").getChild("yweather:wind");
-  if (windData.hasAttribute("direction")) {
-    direction = 2.f * PI * windData.getInt("direction") / 360.f;
-  }
-  if (windData.hasAttribute("speed")) {
-    speed = windData.getInt("speed");
+  try {
+    XML windData = xml.getChild("channel").getChild("yweather:wind");
+    if (windData.hasAttribute("direction")) {
+      direction = 2.f * PI * windData.getInt("direction") / 360.f;
+    }
+    if (windData.hasAttribute("speed")) {
+      speed = windData.getInt("speed");
+    }
+  } catch (Exception e) {
+    // reuse old values for speed and direction and continue
   }
 
   // set up wind vector
