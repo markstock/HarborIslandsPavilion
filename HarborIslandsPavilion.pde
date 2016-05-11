@@ -12,7 +12,7 @@
 // 
 
 // Query live weather?
-int useLiveWeather = 0;
+boolean useLiveWeather = false;
 
 // These are the actual screen sizes
 int baseWidth = 64;
@@ -200,7 +200,7 @@ void setup() {
   hint(ENABLE_STROKE_PURE);  // this is amazing!
   
   // grab a wind vector
-  if (useLiveWeather == 1) {
+  if (useLiveWeather) {
     getWeather();
   } else {
     getWeatherTesting();
@@ -278,7 +278,7 @@ void draw() {
     //thisHour = hour();
   if (hour()*6 + minute()/10 != thisHour) {
     thisHour = hour()*6 + minute()/10;
-    if (useLiveWeather == 1) {
+    if (useLiveWeather) {
       getWeather();
     } else {
       getWeatherTesting();
